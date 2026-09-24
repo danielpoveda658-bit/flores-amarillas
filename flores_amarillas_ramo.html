@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas 🌻</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff8c4, #ffd95a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .contenedor {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 35px 25px;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 520px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            color: #d99b00;
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .flores {
+            font-size: 70px;
+            margin: 10px 0 20px;
+            animation: flotar 2s infinite ease-in-out;
+        }
+
+        button {
+            border: none;
+            background: #f5c400;
+            color: white;
+            padding: 14px 22px;
+            margin: 6px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            background: #e0aa00;
+        }
+
+        #ramo {
+            display: none;
+            font-size: 75px;
+            margin: 15px 0;
+            animation: aparecer 0.8s ease;
+        }
+
+        #mensaje {
+            margin-top: 15px;
+            font-size: 20px;
+            color: #c48b00;
+            font-weight: bold;
+            display: none;
+        }
+
+        .flor-caida {
+            position: fixed;
+            top: -50px;
+            font-size: 28px;
+            pointer-events: none;
+            z-index: 10;
+            animation: caer linear forwards;
+        }
+
+        @keyframes flotar {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: scale(0.4) translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes caer {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <div class="flores">🌻🌻🌻</div>
+
+        <h1>Flores Amarillas 💛</h1>
+
+        <p>
+            Un pequeño detalle para recordar que siempre
+            hay algo bonito que puede florecer. 🌻
+        </p>
+
+        <button onclick="mostrarRamo()">
+            💐 Recibir mi ramo
+        </button>
+
+        <button onclick="lluviaDeFlores()">
+            🌼 Lanzar florecitas
+        </button>
+
+        <div id="ramo">
+            💐🌻🌼🌻💐
+        </div>
+
+        <div id="mensaje">
+            Para ti, con mucho cariño. 💛🌻
+        </div>
+
+    </div>
+
+    <script>
+        function mostrarRamo() {
+            const ramo = document.getElementById("ramo");
+            const mensaje = document.getElementById("mensaje");
+
+            ramo.style.display = "block";
+            mensaje.style.display = "block";
+
+            lluviaDeFlores();
+        }
+
+        function lluviaDeFlores() {
+
+            const flores = ["🌻", "🌼", "🌸", "💛"];
+
+            for (let i = 0; i < 35; i++) {
+
+                const flor = document.createElement("div");
+
+                flor.classList.add("flor-caida");
+
+                flor.textContent =
+                    flores[Math.floor(Math.random() * flores.length)];
+
+                flor.style.left = Math.random() * 100 + "vw";
+
+                flor.style.fontSize =
+                    (20 + Math.random() * 20) + "px";
+
+                flor.style.animationDuration =
+                    (3 + Math.random() * 4) + "s";
+
+                flor.style.animationDelay =
+                    Math.random() * 1.5 + "s";
+
+                document.body.appendChild(flor);
+
+                setTimeout(() => {
+                    flor.remove();
+                }, 8000);
+            }
+        }
+    </script>
+
+</body>
+</html>
